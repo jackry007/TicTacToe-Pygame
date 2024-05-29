@@ -20,3 +20,4 @@ Once the game starts, follow the on-screen instructions to play. Press the SPACE
 - Visual representation of the game using Pygame graphics
 - Title screen with start instructions
 - End screen showing the game result (win, draw) and option to restart
+- End Screen have scoreboard displaying the number of wins for each player
