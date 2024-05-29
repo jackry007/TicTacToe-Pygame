@@ -1,5 +1,6 @@
-import pygame
+import pygame  # type: ignore
 import numpy as np
+import random
 
 # ---------
 # CONSTANTS
@@ -20,6 +21,8 @@ BG_COLOR = (28, 170, 156)
 LINE_COLOR = (23, 145, 135)
 CIRCLE_COLOR = (239, 231, 200)
 CROSS_COLOR = (66, 66, 66)
+AI_PLAYER = 2
+
 
 # -------------
 # CONSOLE BOARD
@@ -63,7 +66,7 @@ def mark_square(row, col, player):
     board[row][col] = player
 
 
-def available_square(row, col):
+def available_square(board, row, col):
     """Checks if the square at the given row and column is available."""
     return board[row][col] == 0
 
@@ -212,3 +215,16 @@ def draw_end_screen(screen, winner, score):
     screen.blit(restart_text, restart_rect)
 
     pygame.display.flip()
+    
+def random_ai(board):
+    """Randomly selects a move for the AI."""
+    available_moves = []
+    for row in range(3):
+        for col in range(3):
+            if board[row][col] == 0:
+                available_moves.append((row, col))
+
+    if available_moves:
+        return random.choice(available_moves)
+    else:
+        return None
