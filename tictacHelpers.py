@@ -163,22 +163,26 @@ def restart(screen):
 
 def draw_title_screen(screen):
     """Draws the title screen with the game title and start instructions."""
-    screen.fill((28, 170, 156))
-    font = pygame.font.Font(None, 74)
-    title_text = font.render('TIC TAC TOE', True, (255, 255, 255))
-    screen.blit(title_text, (WIDTH // 2 -
-                title_text.get_width() // 2, HEIGHT // 3))
+    screen.fill(BG_COLOR)
 
-    font = pygame.font.Font(None, 36)
-    start_text = font.render('Press SPACE to Start', True, (255, 255, 255))
-    screen.blit(start_text, (WIDTH // 2 -
-                start_text.get_width() // 2, HEIGHT // 2))
+    # Title text
+    font_title = pygame.font.Font(None, 74)
+    title_text = font_title.render('TIC TAC TOE', True, (255, 255, 255))
+    title_rect = title_text.get_rect(center=(WIDTH // 2, HEIGHT // 3))
+    screen.blit(title_text, title_rect)
+
+    # Start instructions
+    font_start = pygame.font.Font(None, 36)
+    start_text = font_start.render(
+        'Press SPACE to Start', True, (255, 255, 255))
+    start_rect = start_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+    screen.blit(start_text, start_rect)
 
     pygame.display.flip()
 
 
-def draw_end_screen(screen, winner):
-    """Draws the end screen with the game result and restart instructions."""
+def draw_end_screen(screen, winner, score):
+    """Draws the end screen with the game result, scoreboard, and restart instructions."""
     screen.fill(BG_COLOR)
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
@@ -192,11 +196,19 @@ def draw_end_screen(screen, winner):
         winner_text = 'Player 1 Wins!' if winner == 1 else 'Player 2 Wins!'
         end_text = font.render(winner_text, True, (255, 255, 255))
 
-    screen.blit(end_text, (WIDTH // 2 - end_text.get_width() // 2, HEIGHT // 3))
+    screen.blit(end_text, (WIDTH // 2 - end_text.get_width() // 2, HEIGHT // 4))
 
-    font = pygame.font.Font(None, 36)
-    restart_text = font.render('Press R to Restart', True, (255, 255, 255))
-    screen.blit(restart_text, (WIDTH // 2 -
-                restart_text.get_width() // 2, HEIGHT // 2))
+    # Scoreboard
+    font_score = pygame.font.Font(None, 36)
+    score_text = font_score.render("Player 1: {}  Player 2: {}".format(
+        score[1], score[2]), True, (255, 255, 255))
+    score_rect = score_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+    screen.blit(score_text, score_rect)
+
+    font_restart = pygame.font.Font(None, 36)
+    restart_text = font_restart.render(
+        'Press R to Restart', True, (255, 255, 255))
+    restart_rect = restart_text.get_rect(center=(WIDTH // 2, HEIGHT * 3 // 4))
+    screen.blit(restart_text, restart_rect)
 
     pygame.display.flip()
