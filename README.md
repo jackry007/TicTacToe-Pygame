@@ -16,8 +16,9 @@ Navigate to the directory containing the game files and run the tictactoe.py fil
 Once the game starts, follow the on-screen instructions to play. Press the SPACE key to start the game. Click on the squares to place your X or O, and press the R key to restart the game after it's finished.
 
 ## Features
-- Two-player gameplay
+- Two-player gameplay: Player vs an Easy Randomized AI
 - Visual representation of the game using Pygame graphics
 - Title screen with start instructions
 - End screen showing the game result (win, draw) and option to restart
 - End Screen have scoreboard displaying the number of wins for each player
+- Background music: Background music plays during the game
